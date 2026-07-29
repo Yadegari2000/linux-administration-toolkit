@@ -2,14 +2,80 @@
 
 set -e
 
-VERSION="0.1"
+VERSION="0.2"
+
+#===============================================
+#					Functions
+#===============================================
+
 
 print_header(){
 
-	echo "**************************************"
+	echo "*********************************"
 	echo "Linux Administration Toolkit v$VERSION"
-	echo "**************************************"
+	echo "*********************************"
+	echo
 
 }
 
+
+print_menu() {
+
+echo "1) Show Current User"
+
+echo "2) Show User ID"
+
+echo "3) Show Groups"
+
+echo "4) Show Hostname"
+
+echo "5) Exit"
+
+echo
+
+}
+
+
+#===============================================
+#					Main
+#===============================================
+
+
+
 print_header
+print_menu
+
+read -p "select option:" option
+
+case "$option" in
+1)
+	echo "Current User:"
+	whoami
+	;;
+
+2)
+	echo "User Id:"
+	id | cut -d " " -f1
+	;;
+
+3)
+	echo "Groups:"
+	groups
+	;;
+
+4)
+	echo "Hostname:"
+	hostname
+	;;
+
+5)
+	echo "bye :)"
+	exit
+	;;
+
+*)
+	echo "Invalid option"
+	;;
+
+esac
+
