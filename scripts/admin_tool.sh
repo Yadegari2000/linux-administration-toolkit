@@ -2,7 +2,7 @@
 
 set -e
 
-VERSION="0.2"
+VERSION="0.3"
 
 #===============================================
 #					Functions
@@ -29,7 +29,11 @@ echo "3) Show Groups"
 
 echo "4) Show Hostname"
 
-echo "5) Exit"
+echo "5) Show Running Services"
+
+echo "6) Show Faild Services"
+
+echo "7) Exit"
 
 echo
 
@@ -69,13 +73,22 @@ case "$option" in
 	;;
 
 5)
+	echo "Show Running Services:"
+	systemctl list-units --type service --state=running
+	;;
+
+6)
+	echo "Show Failed Services:"
+	systemctl list-units --failed
+	;;
+
+7)
 	echo "bye :)"
 	exit
 	;;
 
 *)
-	echo "Invalid option"
-	;;
+	echo "Invalid option!"
 
 esac
 
